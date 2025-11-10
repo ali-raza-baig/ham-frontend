@@ -1,18 +1,20 @@
-import React from 'react';
-
 type Props = {
   title: string;
-  value: number | null | undefined;
+  value?: number | null;
   unit?: string;
-  color?: string;
 };
 
-export default function PowerCard({ title, value, unit, color }: Props) {
+export default function PowerCard({ title, value, unit }: Props) {
+  // const formatted =
+  //   typeof value === "number" && !isNaN(value)
+  //     ? value
+  //     : "--";
+
   return (
-    <div className="p-4 rounded-2xl shadow-sm bg-white/5">
+    <div className="p-4 rounded-xl border bg-muted/10 hover:bg-muted/20 transition">
       <div className="text-sm text-muted-foreground">{title}</div>
-      <div className="mt-2 text-2xl font-semibold">
-        {value !== null && value !== undefined ? value.toFixed(2) : '--'} {unit}
+      <div className="text-2xl font-semibold">
+        {value} {unit}
       </div>
     </div>
   );

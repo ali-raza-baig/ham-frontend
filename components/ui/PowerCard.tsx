@@ -1,4 +1,4 @@
-type Props = { title: string; value?: number; unit?: string };
+type Props = { title: string; value?: |number; unit?: string };
 
 export default function PowerCard({ title, value, unit }: Props) {
   const formatted = value !== undefined ? value.toFixed(2) : "--";
