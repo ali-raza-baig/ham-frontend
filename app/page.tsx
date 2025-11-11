@@ -73,7 +73,7 @@ export default function Dashboard() {
         <PowerCard title="Voltage" value={recent?.voltage} unit="V" />
         <PowerCard title="Current" value={recent?.current} unit="A" />
         <PowerCard title="Power" value={recent?.power} unit="W" />
-        <PowerCard title="Energy" value={recent?.energy} unit="kWh" />
+        <PowerCard title="Energy" value={recent?.lastEnergy} unit="kWh" />
         <PowerCard title="Frequency" value={recent?.frequency} unit="Hz" />
       </div>
 
