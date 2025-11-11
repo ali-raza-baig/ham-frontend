@@ -36,35 +36,25 @@ export default function Dashboard() {
         const allData = res.data?.data || res.data || [];
         setData(allData);
 
-        // Calculate last 30 days usage
-        const now = new Date();
-        const thirtyDaysAgo = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000);
-        const last24HoursAgo = new Date(now.getTime() - 24 * 60 * 60 * 1000);
-
-        const last30DaysData = allData.filter((item: any) => {
-          const createdAt = new Date(item.createdAt);
-          return createdAt >= thirtyDaysAgo && createdAt <= now;
-        });
-
-        const last24HoursData = allData.filter((item: any) => {
-          const createdAt = new Date(item.createdAt);
-          return createdAt >= last24HoursAgo && createdAt <= now;
-        });
-
-        // Sum usage (example: using voltage as kWh, you can change to energy if available)
-        const sum30Days = last30DaysData.reduce((acc: any, item: { energy: any; }) => acc + (item.energy || 0), 0);
-        const sum24Hours = last24HoursData.reduce((acc: any, item: { energy: any; }) => acc + (item.energy || 0), 0);
-        console.log(sum24Hours)
-        setLast30DaysUsage(Number(sum30Days));
-        setLast24HoursUsage(Number(sum24Hours));
       } catch (err) {
         console.error("Error fetching all data:", err);
       }
     }, 1000);
 
+    const usage = setInterval(async () => {
+      try {
+        const res = await axios.get(`${API}/api/data/usage`);
+        setLast24HoursUsage(res.data.last24hUsage);
+        setLast30DaysUsage(res.data.last30dUsage);
+        console.log(res)
+      } catch (error) {
+        console.log(`Error in fetching usage : ${error}`)
+      }
+    }, 2000);
     return () => {
       clearInterval(recentInterval);
       clearInterval(pollInterval);
+      clearInterval(usage)
     };
   }, []);
 
