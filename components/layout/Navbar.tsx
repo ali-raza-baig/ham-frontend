@@ -35,17 +35,15 @@ export function Navbar() {
 
       {/* Mobile Drawer Sidebar */}
       <div
-        className={`fixed inset-0 md:hidden transition-transform duration-300 pointer-events-none ${
-          open ? "pointer-events-auto" : ""
-        }`}
+        className={`fixed inset-0 z-20 md:hidden transition-transform duration-300  ${open ? "pointer-events-auto" : ""
+          }`}
       >
 
 
         {/* Sidebar content */}
         <aside
-          className={`relative flex flex-col w-56 h-full bg-white border-r border-border z-50 transform transition-transform duration-300 ${
-            open ? "translate-x-0" : "-translate-x-full"
-          }`}
+          className={`relative flex flex-col w-56 h-full bg-white border-r border-border z-50 transform transition-transform duration-300 ${open ? "translate-x-0" : "-translate-x-full"
+            }`}
         >
           <div className="p-4 text-xl font-bold">⚡ Power Monitor</div>
           <nav className="flex flex-col gap-1 p-2">
@@ -54,9 +52,9 @@ export function Navbar() {
                 key={href}
                 href={href}
                 onClick={() => setOpen(false)} // closes sidebar when clicked
-                className={clsx(
-                  "flex items-center gap-2 p-2 rounded-lg hover:bg-muted transition"
-                )}
+                className=
+                "flex items-center gap-2 p-2 rounded-lg hover:bg-muted transition"
+
               >
                 <Icon size={18} />
                 {label}
