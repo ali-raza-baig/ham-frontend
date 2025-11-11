@@ -27,7 +27,7 @@ export default function Dashboard() {
       } catch (err) {
         console.error("Error fetching recent data:", err);
       }
-    }, 1000);
+    }, 3000);
 
     // Fetch all data for last 30 days / 24 hours every 10s
     const pollInterval = setInterval(async () => {
@@ -50,7 +50,7 @@ export default function Dashboard() {
       } catch (error) {
         console.log(`Error in fetching usage : ${error}`)
       }
-    }, 2000);
+    }, 3000);
     return () => {
       clearInterval(recentInterval);
       clearInterval(pollInterval);
