@@ -46,7 +46,7 @@ export default function Dashboard() {
         const res = await axios.get(`${API}/api/data/usage`);
         setLast24HoursUsage(res.data.last24hUsage);
         setLast30DaysUsage(res.data.last30dUsage);
-        console.log(res)
+        
       } catch (error) {
         console.log(`Error in fetching usage : ${error}`)
       }
@@ -80,12 +80,12 @@ export default function Dashboard() {
       <div className="grid gap-4 pt-4 grid-cols-2">
         <PowerCard
           title="Last 30 Days Usage"
-          value={Number((last30DaysUsage ?? 0).toFixed(2))}
+          value={Number((last30DaysUsage ?? 0))}
           unit="kWh"
         />
         <PowerCard
           title="Last 24 Hours Usage"
-          value={Number((last24HoursUsage ?? 0).toFixed(2))}
+          value={Number((last24HoursUsage ?? 0))}
           unit="kWh"
         />
 

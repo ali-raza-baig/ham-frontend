@@ -1,7 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
 const API = process.env.NEXT_PUBLIC_API_URL;
@@ -58,9 +57,9 @@ export default function HistoryPage() {
   const totalPages = Math.ceil(
     (startDate && endDate
       ? allData.filter((d) => {
-          const ts = new Date(d.timestamp);
-          return ts >= new Date(startDate) && ts <= new Date(endDate);
-        }).length
+        const ts = new Date(d.timestamp);
+        return ts >= new Date(startDate) && ts <= new Date(endDate);
+      }).length
       : allData.length) / limit
   );
 
@@ -70,17 +69,17 @@ export default function HistoryPage() {
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-4">
         <h1 className="text-2xl font-semibold">History Logs</h1>
         <div className="flex flex-wrap items-center gap-2">
-          <Input
+          <input
             type="date"
             value={startDate}
             onChange={(e) => setStartDate(e.target.value)}
-            className="w-36"
+            className="w-36 border-2 rounded-2xl p-1"
           />
-          <Input
+          <input
             type="date"
             value={endDate}
             onChange={(e) => setEndDate(e.target.value)}
-            className="w-36"
+            className="w-36 border-2 rounded-2xl p-1"
           />
           <Button onClick={handleFilter}>Filter</Button>
         </div>
